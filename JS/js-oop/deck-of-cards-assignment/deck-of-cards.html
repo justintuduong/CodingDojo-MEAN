@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		var self = this;
+
+		// class Card {
+		// 	constructor(str, suit, num) {
+		// 		this.str = str;
+		// 		this.suit = suit;
+		// 		this.num = num;
+		// 	}
+		// 	showCard(){
+		// 		console.log(`${ this.str } of ${ this.suit }s`)
+		// 	}
+		// }
+		// const ace = new Card("Ace", "Spade", 1);
+
+		class Deck {
+			constructor() {
+				this.deck = [];
+				this.reset();
+				this.shuffle();
+			}
+			reset() {
+				this.deck = [];
+				const suits = ['Hearts', 'Spades', "Clubs", 'Diamonds'];
+				const values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
+
+				for (let suit in suits) {
+					for (let value in values) {
+						this.deck.push(`${ values[value] } of ${ suits[suit]}`);
+					}
+				}
+			}
+
+			inspectDeck() { //inspects the order of the deck
+				console.log(`${ this.deck}, ${ this.deck.length }`);
+			}
+
+			shuffle() { //shuffles deck into random order
+				var m = this.deck.length,
+					t, i;
+				while (m) {
+					i = Math.floor(Math.random() * m--);
+					t = this.deck[m];
+					this.deck[m] = this.deck[i];
+					this.deck[i] = t;
+				}
+				console.log("im working!")
+				return this;
+			}
+
+			deal() { // pops card out of deck and displays the "popped" card
+				return this.deck.pop();
+			}
+		}
+
+		var deck1 = new Deck();
+		class Player {
+			constructor(name){
+				this.name = name;
+				this.hand = [];
+			}
+			drawCard() {
+				this.hand.push(deck1.deal());
+			}
+			discardCard(index) {
+				this.hand.splice(index,1);
+			}
+		}
+		
+		var player1 = new Player("Jack");
+
+	</script>
+</body>
+
+</html>

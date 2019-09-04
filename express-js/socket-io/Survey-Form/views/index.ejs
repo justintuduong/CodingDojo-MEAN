@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Survey Form</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			console.log("ready!");
+			var socket = io.connect();
+			console.log("connected to io!");
+
+			$('#button').click(function (e) {
+				console.log("clicked!");
+				socket.emit('posting_form', {
+					name: $('#name').val(),
+					location: $('#location').val(),
+					language: $('#language').val(),
+					comment: $('#comment').val()
+				})
+			});
+
+			socket.on("random_number", function (results) {
+				$(".results").append("The lucky number emitted by the server is " + results.random_number + ". "
+				);
+			});
+			socket.on("updated_message", function (results) {
+				$(".results").append("You emmited the following information to the server: {name: " + results
+					.response.name + ", location: " + results.response.location + ", language: " + results
+					.response.language + ", comment: " + results.response.comment + "}");
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<p class="h1 text-center mt-3">Form Survey</p>
+		<div class="container border border-dark rounded mt-3">
+			<p class="results"></p>
+			<form method="POST">
+				<div class="form-group mt-3">
+					<label>Name</label>
+					<input type="text" class="form-control" id="name" placeholder="Your name">
+				</div>
+				<div class="form-group">
+					<label>Location</label>
+					<select class="form-control" id="location">
+						<option>Location</option>
+						<option>Berkeley</option>
+						<option>San Jose</option>
+						<option>Seattle</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Favorite Language</label>
+					<select class="form-control" id="language">
+						<option>Choose Language</option>
+						<option>Python</option>
+						<option>Java</option>
+						<option>MEAN</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Comment (Optional)</label>
+					<textarea class="form-control" rows="3" id="comment"></textarea>
+				</div>
+			</form>
+			<div class="row justify-content-center mb-3">
+				<input value="Submit" id="button" class="btn btn-primary pr-5 pl-5">
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

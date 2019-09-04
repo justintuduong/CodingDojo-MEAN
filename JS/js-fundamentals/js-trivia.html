@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="row">
+		<div class="col-3 books0 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3 movies0 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3"></div>
+	</div>
+	<div class="row">
+		<div class="col-3 books1 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3 movies1 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3"></div>
+	</div>
+	<div class="row">
+		<div class="col-3 books2 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3 movies2 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3"></div>
+	</div>
+	<div class="row">
+		<div class="col-3 books3 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3 movies3 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3"></div>
+	</div>
+	<div class="row">
+		<div class="col-3 books4 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3 movies4 border border-dark d-inline m-2">
+			<p class="h1">200</p>
+		</div>
+		<div class="col-3"></div>
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".books0").click(function () { // when this is clicked, run all code within block
+			console.log("click!");
+				$.get("https://opentdb.com/api.php?amount=5&category=10", (books) => {
+					console.log(books)
+					console.log(books.results.length);
+					$(".books0").html(books.results[0].question + '\n');
+				});
+			});
+		});
+
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".books1").click(function () { // when this is clicked, run all code within block
+			console.log("click!");
+				$.get("https://opentdb.com/api.php?amount=5&category=10", (books) => {
+					console.log(books)
+					console.log(books.results.length);
+					$(".books1").html(books.results[0].question + '\n');
+				});
+			});
+		});
+
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".books2").click(function () { // when this is clicked, run all code within block
+			console.log("click!");
+				$.get("https://opentdb.com/api.php?amount=5&category=10", (books) => {
+					console.log(books)
+					console.log(books.results.length);
+					$(".books2").html(books.results[0].question + '\n');
+				});
+			});
+		});
+
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".books3").click(function () { // when this is clicked, run all code within block
+			console.log("click!");
+				$.get("https://opentdb.com/api.php?amount=5&category=10", (books) => {
+					console.log(books)
+					console.log(books.results.length);
+					$(".books3").html(books.results[0].question + '\n');
+				});
+			});
+		});
+
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".books4").click(function () { // when this is clicked, run all code within block
+			console.log("click!");
+				$.get("https://opentdb.com/api.php?amount=5&category=10", (books) => {
+					console.log(books)
+					console.log(books.results.length);
+					$(".books4").html(books.results[0].question + '\n');
+				});
+			});
+		});
+
+		// $(document).ready(function () {
+		// 	$.get("https://opentdb.com/api.php?amount=5&category=11", (movies) => {
+		// 		console.log(movies)
+		// 		console.log(movies.results.length);
+		// 		for (let i = 0; i < movies.results.length; i++) {
+		// 			$(".movies"+i).html(movies.results[i].question + '\n');
+		// 		}
+		// 	});
+		// });
+	</script>
+</body>
+
+</html>

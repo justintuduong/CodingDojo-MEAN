@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Species</th>
+							<th scope="col">Favorite Food</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for (var x in results) {%>
+						<tr>
+							<td><%= results[x].species %></td>
+							<td><%= results[x].favorite_food %></td>
+							<td>
+								<a href="/mongooses/<%= results[x].id %>">Show</a> |
+								<a href="/mongooses/edit/<%= results[x].id %>">Edit</a> |
+								<a href="/mongooses/destroy/<%= results[x].id %>">Delete</a>
+							</td>
+						</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row justify-content-center mt-5">
+			<a href="/mongooses/new" class="btn btn-primary">Add new species</a>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		var self = this
+
+		function Ninja(name, health) {
+			this.name = name;
+			this.health = 100;
+			var strength = 3;
+			var speed = 3;
+			this.greet = function () {
+				console.log("Hello my name is " + this.name + " and I have " + this.health + " health. I also have " +
+					strength + " strength and " + speed + " speed!");
+			}
+			this.sayName = function () {
+				console.log("my ninja name is " + this.name + "!");
+			}
+			this.showStats = function () {
+				console.log("Name: " + this.name + ", Health: " + this.health + ", Speed: " + speed + ", Strength: " +
+					strength);
+			}
+			this.drinkSoju = function () {
+				this.health += 10;
+				console.log(this.name + " drank soju and gained 10 health points. " + this.name + "'s total health is " +
+					this.health + "!");
+			}
+			this.punch = function (opponent) {
+				if (jack instanceof Ninja && opponent instanceof Ninja) {
+					opponent.health -= 5;
+					console.log(this.name + " punches " + opponent.name + ". " + opponent.name + " now has " + opponent
+						.health + " health.");
+				} else {
+					console.log("You only named one ninja!");
+				}
+			}
+			this.kick = function (opponent) {
+				if (jack instanceof Ninja && opponent instanceof Ninja) {
+					opponent.health -= (15 * strength);
+					console.log(this.name + " kicks " + opponent.name + ". " + opponent.name + " now has " + opponent
+						.health + " health.");
+				} else {
+					console.log("You only named one ninja!");
+				}
+			}
+		}
+
+		var cameron = new Ninja("Cameron", 100);
+		console.log(cameron);
+		var jack = new Ninja("Jack", 100);
+		console.log(jack);
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		// Name: Remy, Cohort: Jan
+		// Name: Genevieve, Cohort: March
+		// Name: Chuck, Cohort: Jan
+		// Name: Osmund, Cohort: June
+		// Name: Nikki, Cohort: June
+		// Name: Boris, Cohort: June
+
+		var students = [{
+				name: 'Remy',
+				cohort: 'Jan'
+			},
+			{
+				name: 'Genevieve',
+				cohort: 'March'
+			},
+			{
+				name: 'Chuck',
+				cohort: 'Jan'
+			},
+			{
+				name: 'Osmund',
+				cohort: 'June'
+			},
+			{
+				name: 'Nikki',
+				cohort: 'June'
+			},
+			{
+				name: 'Boris',
+				cohort: 'June'
+			}
+		];
+
+		function challenge1(arr) {
+			for (var i = 0; i < arr.length; i++) {
+				console.log("Name: " + students[i].name + ", Cohort: " + students[i].cohort)
+			}
+		}
+		challenge1(students);
+
+		let users = {
+			employees: [{
+					'first_name': 'Miguel',
+					'last_name': 'Jones'
+				},
+				{
+					'first_name': 'Ernie',
+					'last_name': 'Bertson'
+				},
+				{
+					'first_name': 'Nora',
+					'last_name': 'Lu'
+				},
+				{
+					'first_name': 'Sally',
+					'last_name': 'Barkyoumb'
+				}
+			],
+			managers: [{
+					'first_name': 'Lillian',
+					'last_name': 'Chambers'
+				},
+				{
+					'first_name': 'Gordon',
+					'last_name': 'Poe'
+				}
+			]
+		};
+
+		function challenge2() {
+			for (key in users) {
+				console.log(key.toUpperCase());
+				for (var i = 0; i < users[key].length; i++) {
+					console.log(i + 1 + " - " + users[key][i].last_name.toUpperCase() + ", " + users[key][i].first_name
+						.toUpperCase() + " - " + (users[key][i].first_name.length + users[key][i].last_name.length));
+				}
+			}
+		}
+		challenge2();
+		// console.log("EMPLOYEES" + '\n')
+		// for (var i = 0; i < users.employees.length; i++) {
+		// 	// console.log(users.employees[i].last_name);
+		// 	// console.log(users.employees[i].first_name.length);
+		// 	console.log(i + 1 + " - " + users.employees[i].last_name.toUpperCase() + ", " + users.employees[i].first_name.toUpperCase() + " - " + (
+		// 		users.employees[i].last_name.toUpperCase().length + users.employees[i].first_name.toUpperCase().length))
+		// }
+		// console.log('\n' + "MANAGERS")
+		// for (var i = 0; i < users.managers.length; i++) {
+		// 	console.log(i + 1 + " - " + users.managers[i].last_name.toUpperCase() + ", " + users.managers[i].first_name.toUpperCase() + " - " + (
+		// 		users.managers[i].last_name.toUpperCase().length + users.managers[i].first_name.toUpperCase().length))
+	</script>
+</body>
+
+</html>

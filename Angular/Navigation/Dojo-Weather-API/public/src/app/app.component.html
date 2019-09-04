@@ -1,0 +1,26 @@
+<div id="container">
+  <div id="header">
+    <h1 class="text-center pt-3 pb-3">Dojo Weather Forecast</h1>
+  </div>
+  <ul class="nav justify-content-center">
+    <li class="nav-item pr-3">
+      <a [routerLink]="['seattle']"> Seattle, WA </a>
+    </li>
+    <li class="nav-item pr-3">
+      <a [routerLink]="['sanjose']"> San Jose, CA </a>
+    </li>
+    <li class="nav-item pr-3">
+      <a [routerLink]="['burbank']"> Burbank, CA </a>
+    </li>
+    <li class="nav-item pr-3">
+      <a [routerLink]="['dallas']"> Dallas, TX </a>
+    </li>
+    <li class="nav-item pr-3">
+      <a [routerLink]="['washington']"> Washington D. C. </a>
+    </li>
+    <li class="nav-item pr-3">
+      <a [routerLink]="['chicago']"> Chicago, IL </a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>

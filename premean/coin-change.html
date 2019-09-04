@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+		Given a number of US cents, return the optimal configuration (meaning the largest denominations possible) of coins in an object. Use dollars, quarters, dimes, nickels, and pennies.
+
+		Example: coinChange(312) returns 
+		{dollars: 3, dimes: 1, pennies: 2}
+
+		Example: coinChange(78) returns 
+		{quarters: 3, pennies: 3}
+
+
+		<!-- BONUS: Given an object with certain amounts of denominations of US money, alter the object so that the configuration is optimal.
+		Example: coinChange({dollars: 2, dimes: 15, pennies: 5}) returns
+		{dollars: 3, quarters: 2, nickels: 1} -->
+
+	<script>
+		function coinChange(val){
+			var counts = [
+				0,
+				0,
+				0,
+				0,
+				val
+			]
+
+			var denominations = [
+				100,
+				25,
+				10,
+				5
+			]
+			
+			for (var i =0; i < 4; i++){
+				counts[i] = Math.floor(counts[4]/ denominations[i]);
+				counts[4] = counts[4] - (counts[i] * denominations[i]);
+			}
+			return "dollar: " + counts[0] + ", quarters: " + counts[1] + ", dimes: " + counts[2] + ", nickles: " + counts[3] + ", pennies : " + counts[4]
+		}
+		console.log(coinChange(1268));
+
+	</script>
+</body>
+</html>

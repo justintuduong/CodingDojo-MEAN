@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="container text-center mt-4 rounded" id="custom-border">
+  <p class="h1 pt-3">
+    Welcome to {{ title }}!
+  </p>
+
+  <div class="row justify-content-center ml-auto mr-auto">
+
+    <form (submit)="onCreate()">
+      <!-- use the json pipe to see how newTask changes in real time -->
+      <!--     <p> {{ newTask | json }} </p> -->
+      <div class="row">
+        <label for="title">Task Title</label>
+        <input type="text" name="newTask.title" [(ngModel)]="newTask.title" class="form-control" />
+      </div>
+      <div class="row">
+        <label for="description">Task Description</label>
+        <input type="text" name="newTask.description" [(ngModel)]="newTask.description" class="form-control" />
+      </div>
+      <input type="submit" class="btn btn-success mt-3 mb-3" value="Create Task" />
+    </form>
+    <div class="container mb-4 rounded overflow-auto " id="custom-border2">
+      <button class="btn btn-primary mb-4 pl-5 pr-5 mt-3" (click)="getAllTasks()">Click to show all Tasks</button>
+      <div *ngFor="let task of tasks; let taskIndex = index">
+        <div class="row justify-content-center mt-3">
+          <div class="col-8">
+            <p class="h4 mr-4">{{task.title}}</p>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary mr-3" (click)="getTaskById(task._id)">Show description</button>
+            <button class="btn btn-warning mr-3" (click)="editForm(task)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteTask(task._id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <app-task [taskBoolean]="requested" [taskToShow]="selectedTask"></app-task>
+    </div>
+    <div *ngIf="editShow">
+      <form (submit)="onEdit()">
+        <!-- use the json pipe to see how newTask changes in real time -->
+        <!--     <p> {{ editTask | json }} </p> -->
+        <div class="row">
+          <label class="d-inline" for="title">Task Title</label>
+          <input type="text" name="editTask.title" [(ngModel)]="editTask.title" class="form-control d-inline"
+            value="{{editTask.title}}" />
+        </div>
+        <div class="row">
+          <label for="description">Task Description</label>
+          <input type="text" name="editTask.description" [(ngModel)]="editTask.description"
+            value="{{editTask.description}}" class="form-control" />
+        </div>
+        <input type="submit" class="btn btn-success mt-3 mb-3" value="Edit Task" />
+      </form>
+    </div>
+    <div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

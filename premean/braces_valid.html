@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<!-- Given a string, write a function that will determine whether the braces  - including parentheses (), square brackets [], and curly brackets {} - within the string are valid. That means that any braces within other braces must close before the outer set closes.
+
+HINT: Keep in mind that you may use arrays and objects to keep your information organized!
+
+Example: bracesValid("{{()}}[]") returns true because the inner braces close before the outer braces. Each opening brace has a matching closing brace.
+
+Example:  bracesValid("{(})") returns false because the curly braces close before the parentheses, which starts within the curly braces, had a chance to close. -->
+	<script>
+		function bracesValid(str) {
+			if (str.length <= 1)											// if the string is 1 or less, return false
+				return false;
+
+			var matchingOpeningBracket;										// value will become the opening bracket pair.
+			var bracket;													// the bracket being inspected in str
+		var stack = [];														// empty array, using stack principle
+
+			var open = [													// will be accessed through "indexOf" method
+				'[', 
+				'{', 
+				'('
+			]
+			var close = [
+				']', 
+				'}', 
+				')'
+				]
+
+			for (var i = 0; i < str.length; i++) {
+				bracket = str[i]
+
+				if (close.indexOf(bracket) > -1) { 								//verifys whether bracket is an open or closing bracket, if greater than -1 then it is a closing bracket
+					// console.log(open[close.indexOf(bracket)]);
+					matchingOpeningBracket = open[close.indexOf(bracket)]		//matches closing bracket with the opening bracket
+					if (stack.length == 0 || (stack.pop() != matchingOpeningBracket)) { // if matchingopeningbracket does not = the value inserted into stack.pop(), then it will return false. if stack is empty, then there is a closing bracket without an opening bracket
+						return false
+					}
+				} else {														// if bracket = -1, it is an open bracket and is pushed into stack
+					stack.push(bracket);
+				}
+			}
+			return (stack.length == 0);											// turns return statement into boolean.
+		};
+		console.log(bracesValid("{{()}}[]"));
+		console.log(bracesValid("{(})"));
+	</script>
+</body>
+
+</html>

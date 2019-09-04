@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<style>
+		img {
+			width: 300px;
+			height: auto;
+		}
+	</style>
+</head>
+<div class="row mt-5">
+	<div class="col-3">
+		<img src="stark.jpg" alt="" class="stark">
+	</div>
+	<div class="col-3">
+		<img src="targaryen.jpg" alt="" class="targaryen">
+	</div>
+	<div class="col-3">
+		<img src="lannister.jpg" alt="" class="lannister">
+	</div>
+	<div class="col-3">
+		<img src="baratheon.png" alt="" class="baratheon">
+	</div>
+</div>
+<div class="row houseDetails">
+	<p class="houseName"></p>
+	<br>
+	<p class="houseWords"></p>
+	<br>
+
+	<p class="houseTitles"></p>
+	<br>
+
+</div>
+
+<body>
+	<script>
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".stark").click(function () {
+				console.log("click");
+				$.get("https://anapioficeandfire.com/api/houses/362", (stark_data) => {
+					console.log(stark_data);
+					// displayname = data.name;
+					// $("#displayname").html(data.name);
+					// $(".houseName").html("Name " + stark_data.name);
+					// $(".houseWords").html("Words " + stark_data.words);
+					// $(".houseTitles").html("Words " + stark_data.titles);
+					$(".houseDetails").append("Words " + stark_data.titles);
+				})
+			});
+		});
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".targaryen").click(function () {
+				console.log("click");
+				$.get("https://anapioficeandfire.com/api/houses/378", (targaryen_data) => {
+					console.log(targaryen_data);
+					// displayname = data.name;
+					// $("#displayname").html(data.name);
+					// $(".houseName").html("Name " + stark_data.name);
+					// $(".houseWords").html("Words " + stark_data.words);
+					// $(".houseTitles").html("Words " + stark_data.titles);
+					$(".houseDetails").append("Words " + targaryen_data.titles);
+				})
+			});
+		});
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".lannister").click(function () {
+				console.log("click");
+				$.get("https://anapioficeandfire.com/api/houses/229", (lannister_data) => {
+					console.log(lannister_data);
+					// displayname = data.name;
+					// $("#displayname").html(data.name);
+					// $(".houseName").html("Name " + stark_data.name);
+					// $(".houseWords").html("Words " + stark_data.words);
+					// $(".houseTitles").html("Words " + stark_data.titles);
+					$(".houseDetails").append("Words " + lannister_data.titles);
+				})
+			});
+		});
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".baratheon").click(function () {
+				console.log("click");
+				$.get("https://anapioficeandfire.com/api/houses/17", (baratheon_data) => {
+					console.log(baratheon_data);
+					// displayname = data.name;
+					// $("#displayname").html(data.name);
+					// $(".houseName").html("Name " + stark_data.name);
+					// $(".houseWords").html("Words " + stark_data.words);
+					// $(".houseTitles").html("Words " + stark_data.titles);
+					$(".houseDetails").append("Words " + baratheon_data.titles);
+				})
+			});
+		});
+
+	</script>
+</body>
+
+</html>

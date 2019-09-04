@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="container mt-3 border border-dark p-5 text-center rounded">
+			<% for(var i = 0 ; i < results.length ; i++){ %>
+			<p class="h3">Species: <%= results[i].species %> </p>
+			<p class="h3">Favorite Food: <%= results[i].favorite_food%> </p>
+			<% } %>
+			<div class="row justify-content-center mt-5">
+				<a href="/" class="btn btn-primary">Home</a>
+				<a href="/mongooses/edit/<%= results[0].id %>" class="btn btn-success ml-2 mr-2">Edit</a>
+				<a href="/mongooses/destroy/<%= results[0].id %>" class="btn btn-danger">Delete</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

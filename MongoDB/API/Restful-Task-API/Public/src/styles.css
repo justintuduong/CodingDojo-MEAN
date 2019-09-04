@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+#custom-border {
+    border: lightcoral solid 10px;
+}
+
+#custom-border2 {
+    border: lightgreen solid 10px;
+    height:33vh;
+}
+
+#custom-border3 {
+    border: lightblue solid 10px;
+}

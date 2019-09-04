@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<img src="map.png" alt="a map of the game">
+
+
+	<script>
+		// --------------------------- variables ---------------------------------------------
+
+		var tigger = {
+			character: "Tigger",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("The wonderful thing about Tiggers is Tiggers are wonderful things!")
+			}
+		};
+		var pooh = {
+			character: "Winnie the Pooh",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("Oh bother")
+			}
+		};
+		var piglet = {
+			character: "Piglet",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("Oh d-d-d-dear!")
+			}
+		};
+		var bees = {
+			character: "Bees",
+			mission: false,
+			honey_available: true,
+			greet: function () {
+				console.log("bzzzzz!")
+			}
+		};
+		var owl = {
+			character: "Owl",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("hoot!")
+			}
+		};
+		var christopher_robin = {
+			character: "Christopher Robin",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("Hi there!")
+			}
+		};
+		var rabbit = {
+			character: "rabbit",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("Oh you!")
+			}
+		};
+		var gopher = {
+			character: "gopher",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("*digs away*")
+			}
+		};
+
+		var kanga = {
+			character: "Kanga",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("You're stronger than you think!")
+			}
+		};
+		var eeyore = {
+			character: "Eeyore",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("Here we go again...")
+			}
+		};
+		var heffalumps = {
+			character: "Heffalumps",
+			mission: false,
+			honey_available: false,
+			greet: function () {
+				console.log("???")
+			}
+		};
+		var player = {
+			location: tigger,
+			mission: null,
+			honey: false
+		};
+		var score = 0;
+
+		// --------------------------- MAP ---------------------------------------------
+
+		tigger.north = pooh;
+		pooh.south = tigger;
+
+		pooh.west = piglet;
+		piglet.east = pooh;
+
+		pooh.east = bees;
+		bees.west = pooh;
+
+		piglet.north = owl;
+		owl.south = piglet;
+
+		owl.east = christopher_robin;
+		christopher_robin.west = owl;
+		pooh.north = christopher_robin;
+		christopher_robin.south = pooh;
+
+		christopher_robin.east = rabbit;
+		rabbit.west = christopher_robin;
+		bees.north = rabbit;
+		rabbit.south = bees;
+
+		rabbit.east = gopher;
+		gopher.west = rabbit;
+
+		christopher_robin.north = kanga;
+		kanga.south = christopher_robin;
+
+		kanga.north = eeyore;
+		eeyore.south = kanga;
+
+		eeyore.east = heffalumps;
+		heffalumps.west = eeyore;
+
+		// --------------------------- END OF MAP ---------------------------------------------
+
+		// function move(direction) {
+		// 	if (player.location[direction]) {
+		// 		player.location = player.location[direction]
+		// 		console.log(player.location[direction])
+		// 		console.log("You are now at " + player.location.character + "'s house");
+		// 	} else {
+		// 		console.log("You may not go that way!");
+		// 	}
+		// }
+
+		function mission() {
+			var objective = [tigger, piglet, pooh, owl, christopher_robin, rabbit, gopher, kanga, eeyore, heffalumps];
+			requestor = objective[Math.floor(Math.random() * 10)];
+			requestor.mission = true;
+			// console.log(requestor, requestor.mission)
+			console.log(requestor.character + " is looking for honey! Can you help?");
+			return requestor;
+		}
+		mission();
+
+		function collectHoney() {
+			console.log(player.location.honey_available)
+			if (!player.honey && !player.location.honey_available) {
+				console.log("Aw, I can't find the honey!");
+			} else if (player.honey) {
+				console.log("This honey is getting heavy! Let's hurry up!")
+			} else {
+				player.honey = true;
+				console.log("Got the honey! let's go before we get stung!");
+			}
+		}
+		function drop() {
+			if (player.honey && player.location.character == requestor.character) {
+				player.honey == false;
+				requestor.mission = false;
+				console.log("Congrats, You've delivered honey to " + player.location.character);
+				score++
+				mission();
+				return score;
+			} else if (player.honey && player.location.character != requestor.character){
+				console.log("This honey is for " + requestor.character + "!");
+			} else {
+				console.log("I don't have any honey to give, sorry!");
+			}
+		}
+
+		document.onkeydown = function move(e) {
+			if (e.keyCode == 37) { //Moves west (left)
+				if (player.location["west"]) {
+					player.location = player.location["west"]
+					console.log("You are now at " + player.location.character + "'s house");
+					player.location.greet();
+					if (player.location.honey_available && !player.honey) {
+						console.log("Hey, look! I see honey!");
+					}
+				} else {
+					console.log("You may not go that way!");
+				}
+			} else if (e.keyCode == 38) { //Moves north (up)
+				if (player.location["north"]) {
+					player.location = player.location["north"]
+					console.log("You are now at " + player.location.character + "'s house");
+					player.location.greet();
+					if (player.location.honey_available) {
+						console.log("Hey, look! I see honey!");
+					}
+				} else {
+					console.log("You may not go that way!");
+				}
+			} else if (e.keyCode == 39) { //Moves east (right)
+				if (player.location["east"]) {
+					player.location = player.location["east"]
+					console.log("You are now at " + player.location.character + "'s house");
+					player.location.greet();
+					if (player.location.honey_available) {
+						console.log("Hey, look! I see honey!");
+					}
+				} else {
+					console.log("You may not go that way!");
+				}
+			} else if (e.keyCode == 40) { //Moves south (down)
+				if (player.location["south"]) {
+					player.location = player.location["south"]
+					console.log("You are now at " + player.location.character + "'s house");
+					player.location.greet();
+					if (player.location.honey_available) {
+						console.log("Hey, look! I see honey!");
+					}
+				} else {
+					console.log("You may not go that way!");
+				}
+			}
+			if (e.keyCode == 32) { //space bar activates collect honey
+				collectHoney();
+			}
+		}
+	</script>
+</body>
+
+</html>

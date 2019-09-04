@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Real Time Colors</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container-fluid text-center p-5" id="container">
+		<div class="row justify-content-center p-5">
+			<button id="green" class="btn btn-success p-5 ml-2 mr-2 w-25 mt-5 mb-5 border border-dark">Green</button>
+			<button id="blue" class="btn btn-primary p-5 ml-2 mr-2 w-25 mt-5 mb-5 border border-dark">Blue</button>
+			<button id="red" class="btn btn-danger p-5 ml-2 w-25 mt-5 mb-5 border border-dark">Red</button>
+		</div>
+	</div>
+	<!-- -------------------------------------------------------------------------------- -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			console.log("ready!");
+			var socket = io.connect();
+			
+			console.log("connected to io!");
+
+			$('#green').click(function () {
+				console.log("clicked!");
+				socket.emit('green')
+			});
+
+			$('#blue').click(function () {
+				console.log("clicked!");
+				socket.emit('blue')
+			});
+
+			$('#red').click(function () {
+				console.log("clicked!");
+				socket.emit('red')
+
+			});
+			socket.on("bg-color", (addColor) => {
+				console.log("step3");
+				console.log(addColor)
+				$("#container").removeClass("bg-success bg-primary bg-danger").addClass(addColor);
+			});
+		});
+	</script>
+</body>
+
+
+</html>

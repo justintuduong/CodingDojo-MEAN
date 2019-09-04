@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Message Board</title>
+	<style>
+		.custom-height {
+			height: 55vh;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<p class="h1 pt-3 pl-5 text-primary">The Dojo Message Board</p>
+		</div>
+		<hr>
+		<!-- ------------------------ Message Form ------------------------------------------------- -->
+		<div class="container">
+			<form action="/message/process" method="POST">
+				<div class="form-row">
+					<div class="form-col">
+						<label class="d-block">Name:</label>
+						<input type="text" name="messager" class="form-control border border-primary">
+					</div>
+				</div>
+				<div class="form-row mt-2">
+					<label class="d-block">Message:</label>
+					<textarea name="message_content" rows="3" class="form-control border border-primary"></textarea>
+				</div>
+				<div class="text-right">
+					<input type="submit" class="btn btn-outline-primary mt-2 pl-5 pr-5 mb-2" value="Post Message">
+				</div>
+			</form>
+		</div>
+
+		<!-- ----------------------------------- Show Message ----------------------------------- -->
+
+		<div class="container custom-height overflow-auto pl-3">
+			<% for (var x in all_messages) { %>
+			<div class="container p-0 mt-3">
+				<p class="h4"><%= all_messages[x].messager%></p>
+				<p class="d-inline"><span class="h4">Message: </span> <%= all_messages[x].message_content%></p>
+				<hr>
+				<!-- ----------------------------------- Show Comments ----------------------------------- -->
+				<p class="h6 mt-3">Comments Section</p>
+				<% for (let y=0; y < all_messages[x].comments.length; y++) { %>
+				<p class="h5"><%= all_messages[x].comments[y].commenter %></p>
+				<p> <span class="h5"></span> <%= all_messages[x].comments[y].comment_content %></p>
+				<% } %>
+
+				<!-- ----------------------------------- Comment Form ----------------------------------- -->
+				<hr>
+				<form action="/comment/process" method="POST">
+					<div class="form-row">
+						<input type="hidden" value="<%=all_messages[x].id%>" name="id">
+						<div class="form-col">
+							<label class="d-block">Name:</label>
+							<input type="text" name="commenter" class="form-control border border-success">
+						</div>
+					</div>
+					<div class="form-row mt-2">
+						<label class="d-block">Comment:</label>
+						<textarea name="comment_content" rows="3" class="form-control border border-success"></textarea>
+					</div>
+					<div class="text-right"><input type="submit" class="btn btn-outline-success mt-2 pl-5 pr-5 mb-2"
+							value="Post Comment"></div>
+				</form>
+				<hr>
+			</div>
+			<% } %>
+		</div>
+	</div>
+</body>
+
+</html>

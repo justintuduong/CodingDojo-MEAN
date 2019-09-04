@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		// Write a function called userLanguages that accepts an array of users, such as the one shown above. 
+		// Return a string that lists all the users by first name and last name and the languages that each user knows. 
+		// Make the string as nicely formatted as possible so that it is easy to read.
+
+		// Kermit the Frog knows Python, JavaScript, C#, HTML, CSS, and SQL. 
+		// Winnie the Pooh knows Python, Swift, and Java. 
+		// Arthur Dent knows JavaScript, HTML, and Go.
+
+		// Kermit the Frog knows Python, JavaScript, C#, HTML, CSS, and SQL.
+		// Kermit is also interested in guitar, flute, tap, salsa, Black Mirror, and Stranger Things.
+		// Winnie the Pooh knows Python, Swift, and Java.
+		// Winnie is also interested in honey, honeycomb, honeysuckle, and Heffalumps.
+		// Arthur Dent knows JavaScript, HTML, and Go.
+		// Arthur is also interested in stars, planets, improbability, tea, and yellow bulldozers.
+
+
+		users = [{
+				fname: "Kermit",
+				lname: "the Frog",
+				languages: ["Python", "JavaScript", "C#", "HTML", "CSS", "SQL"],
+				interests: {
+					music: ["guitar", "flute"],
+					dance: ["tap", "salsa"],
+					television: ["Black Mirror", "Stranger Things"]
+				}
+			},
+			{
+				fname: "Winnie",
+				lname: "the Pooh",
+				languages: ["Python", "Swift", "Java"],
+				interests: {
+					food: ["honey", "honeycomb"],
+					flowers: ["honeysuckle"],
+					mysteries: ["Heffalumps"]
+				}
+			},
+			{
+				fname: "Arthur",
+				lname: "Dent",
+				languages: ["JavaScript", "HTML", "Go"],
+				interests: {
+					space: ["stars", "planets", "improbability"],
+					home: ["tea", "yellow bulldozers"]
+				}
+			}
+		]
+
+		function userLanguages2(users) {
+			var str = "";
+			for (var i = 0; i < users.length; i++) {
+				str += users[i].fname + " " + users[i].lname + " knows ";
+				for (var j = 0; j < users[i].languages.length; j++) {
+					if (j == users[i].languages.length - 1) {
+						str += "and " + users[i].languages[j] + ".";
+					} else {
+						str += users[i].languages[j] + ", ";
+					}
+				}
+				str += '\n';
+				str += users[i].fname + " is also interested in ";
+				for (k in users[i].interests) {
+					console.log(k); // good up till here, prints all interest objects
+					str += users[i].interests[k] + ", "; //need to iterate through objects, find the last object, then find the last item in the last object's array...
+					for (l in users[i].interests[k]) {
+						console.log(l);
+						// if (l in users[i].interests[k] == users[i].interests[k].length - 1) {
+						// 	console.log("working!");
+						// 	str += "and " + users[i].interests[k] + "."
+						}
+					}
+					str += '\n';
+				}
+				return str;
+			}
+			console.log(userLanguages2(users));
+	</script>
+</body>
+
+</html>

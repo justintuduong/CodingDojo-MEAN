@@ -1,0 +1,10 @@
+<html>
+<body>
+    <h2>Details page for <%= cat.name %></h2>
+        <h3>Favorite food: 
+			<% for (var x in cat.food) { %> <%= cat.food[x] %><% } %></h3>
+        <h4>Age: <%= cat.age %></h4>
+		<h4>Sleeping Spots: <%= cat.sleepingspots %></h4>
+
+</body>
+</html>
